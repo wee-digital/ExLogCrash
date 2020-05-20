@@ -31,42 +31,41 @@ class LogAdapter : RecyclerView.Adapter<LogAdapter.VH>() {
     private fun View.onBindItem(model: LogItem) {
 
         val request: Request = model.request
+        textViewTitle.text = "${request.method()} - ${request.url()}"
 
-        // Title
-        var s = "${request.method()} - ${request.url()} - ${model.interval}"
-        textViewTitle.setTextColor(model.color)
-        textViewTitle.text = s
-
-        model.color = Color.parseColor("#4B4B4B")
-
-        // RequestBody
-        val requestTitle = "RequestBody"
-        textViewRequest.text = requestTitle
-        textViewRequest.setOnClickListener {
-            textViewRequest.text = if (textViewRequest.text.toString() != requestTitle) {
-                requestTitle
-            } else {
-                model.jsonRequest
-            }
-        }
+        onBindRequest(model)
 
         model.throwable?.also {
-            textViewResponse.setHyperText("<font color=#FF5252>${(it.message ?: "unknown error")}</font>")
+            textViewResponseTitle.setTextColor(Color.parseColor("#D81B60"))
+            textViewResponseTitle.setHyperText("<font color=#FF5252>${(it.message ?: "unknown error")}</font>")
             return
         }
 
-        model.response?.also { res ->
-            val responseTitle = "Response - ${res.code()}"
-            textViewResponse.text = responseTitle
-            textViewResponse.setOnClickListener {
-                textViewResponse.text = if (textViewResponse.text.toString() != responseTitle) {
-                    responseTitle
-                } else {
-                    model.responseBody
-                }
-            }
-            return
+        onBindResponse(model)
+    }
+
+    private fun View.onBindRequest(model: LogItem) {
+        textViewRequestTitle.text = "Request - ${model.ago}"
+        textViewRequest.text = "..."
+        val onClick = View.OnClickListener {
+            textViewRequest.text = if (textViewRequest.text.toString() == "...") model.requestBody else "..."
         }
+        textViewRequestTitle.setOnClickListener(onClick)
+        textViewRequest.setOnClickListener(onClick)
+    }
+
+    private fun View.onBindResponse(model: LogItem) {
+        textViewResponseTitle.setTextColor(Color.parseColor("#00897B"))
+        textViewResponseTitle.text = when (model.response) {
+            null -> "Response"
+            else -> "Response - ${model.response!!.code()}  - ${model.interval}"
+        }
+        val onClick = View.OnClickListener {
+            textViewResponse.text = if (textViewResponse.text.toString() == "...") model.responseBody else "..."
+        }
+        textViewResponse.text = "..."
+        textViewResponseTitle.setOnClickListener(onClick)
+        textViewResponse.setOnClickListener(onClick)
     }
 
     private fun TextView.setHyperText(s: String?) {

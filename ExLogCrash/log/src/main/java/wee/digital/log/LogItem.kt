@@ -1,12 +1,11 @@
 package wee.digital.log
 
-import android.graphics.Color
 import okhttp3.Request
 import okhttp3.Response
 import okio.Buffer
-import org.json.JSONException
 import org.json.JSONObject
-import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 class LogItem(val request: Request) {
 
@@ -16,23 +15,17 @@ class LogItem(val request: Request) {
 
     var throwable: Throwable? = null
 
-    var color: Int = Color.parseColor("#2196F3")
+    private val sentRequestAtMillis = System.currentTimeMillis()
 
-    val stringRequest: String?
-        get() = try {
-            val copy = request.newBuilder().build()
-            val buffer = Buffer()
-            copy.body()?.writeTo(buffer)
-            buffer.readUtf8()
-        } catch (e: IOException) {
-            null
-        }
+    var requestBody: String? = null
 
-    val jsonRequest: String?
-        get() = try {
-            JSONObject(stringRequest).toString(2)
-        } catch (e: JSONException) {
-            null
+    val ago: String
+        get() {
+            val ago = System.currentTimeMillis() - sentRequestAtMillis
+            if (ago < 60000) {
+                return "${(ago / 1000)} seconds ago"
+            }
+            return SimpleDateFormat("HH:mm:ss").format(Date(sentRequestAtMillis))
         }
 
     val interval: String
@@ -44,4 +37,16 @@ class LogItem(val request: Request) {
         } else {
             ""
         }
+
+    init {
+        try {
+            val copy = request.newBuilder().build()
+            val buffer = Buffer()
+            copy.body()?.writeTo(buffer)
+            val s = buffer.readUtf8()
+            requestBody = JSONObject(s).toString(2)
+        } catch (ignore: Exception) {
+        }
+    }
+
 }

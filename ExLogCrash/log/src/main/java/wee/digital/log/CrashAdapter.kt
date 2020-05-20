@@ -17,8 +17,7 @@ class CrashAdapter : RecyclerView.Adapter<CrashAdapter.VH>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val v =
-            LayoutInflater.from(parent.context).inflate(R.layout.dialog_crash_item, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.dialog_crash_item, parent, false)
         return VH(v)
     }
 
@@ -28,8 +27,8 @@ class CrashAdapter : RecyclerView.Adapter<CrashAdapter.VH>() {
 
         holder.itemView.apply {
             textViewTitle.text = model.title
-            textViewTrace.text = "Trace:\n${model.trace}"
-            textViewCause.text = "Cause:\n${model.cause}"
+            textViewTrace.text = model.trace
+            textViewCause.text = model.cause
         }
     }
 

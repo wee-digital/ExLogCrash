@@ -4,42 +4,58 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="24dp"
+    android:paddingStart="4dp"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewTitle"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:paddingStart="4dp"
-        android:textColor="#4B4B4B"
-        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:textColor="#000"
+        android:textSize="14sp"
         tools:text="Item text goes here" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewRequestTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingTop="20dp"
+        android:text="Request"
+        android:textColor="#1E88E5"
+        android:textSize="12sp" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewRequest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="2560"
-        android:minHeight="32dp"
-        android:paddingStart="4dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
         android:textColor="#4B4B4B"
         android:textSize="12sp"
-        tools:text="Request" />
+        tools:text="..." />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewResponseTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="Response"
+        android:textColor="#00897B"
+        android:textSize="12sp" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewResponse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="2560"
-        android:minHeight="32dp"
-        android:padding="4dp"
-        android:paddingStart="4dp"
-        android:paddingBottom="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
         android:textColor="#4B4B4B"
         android:textSize="12sp"
-        tools:text="Response" />
+        tools:text="..." />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
