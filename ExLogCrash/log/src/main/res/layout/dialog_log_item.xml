@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="24dp"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:gravity="center_vertical"
+        android:paddingStart="4dp"
+        android:textColor="#4B4B4B"
+        android:textStyle="bold"
+        tools:text="Item text goes here" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewRequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="2560"
+        android:minHeight="32dp"
+        android:paddingStart="4dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="10dp"
+        android:textColor="#4B4B4B"
+        android:textSize="12sp"
+        tools:text="Request" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewResponse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="2560"
+        android:minHeight="32dp"
+        android:padding="4dp"
+        android:paddingStart="4dp"
+        android:paddingBottom="12dp"
+        android:textColor="#4B4B4B"
+        android:textSize="12sp"
+        tools:text="Response" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
