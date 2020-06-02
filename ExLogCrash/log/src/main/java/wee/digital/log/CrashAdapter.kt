@@ -22,15 +22,12 @@ class CrashAdapter : RecyclerView.Adapter<CrashAdapter.VH>() {
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-
         val model: CrashItem = list[position]
-
         holder.itemView.apply {
             textViewTitle.text = model.title
             textViewTrace.text = model.trace
             textViewCause.text = model.cause
         }
     }
-
 
 }
