@@ -9,6 +9,7 @@ import okio.Buffer
 import org.json.JSONException
 import org.json.JSONObject
 import wee.digital.log.data.CrashItem
+import wee.digital.log.data.EnrollItem
 import wee.digital.log.data.LogDb
 import wee.digital.log.data.LogItem
 
@@ -150,6 +151,12 @@ object LogBook {
      */
     fun notifyLogChanged() {
         updateLiveData.postValue(System.currentTimeMillis())
+    }
+
+    fun saveEnrollItem(item: EnrollItem) {
+        Thread{
+            LogDb.instance.enrollDao.insert(item)
+        }.start()
     }
 
     private fun String?.jsonFormat(): String? {

@@ -2,7 +2,6 @@ package wee.digital.log.dialog
 
 import android.view.View
 import androidx.fragment.app.FragmentActivity
-import kotlinx.android.synthetic.main.dialog_api_item.view.*
 import kotlinx.android.synthetic.main.dialog_enroll_item.view.*
 import wee.digital.log.R
 import wee.digital.log.data.EnrollItem
@@ -31,7 +30,7 @@ class EnrollDialog : BaseDialog<EnrollItem> {
                 textViewName.text = model.name
                 textViewSize.text = model.requestContentLength.toString()
                 textViewDetect.text = (model.requestedTime - model.detectedTime).toString()
-                textViewRequest.text = (model.responseTime - model.requestedTime).toString()
+                textViewEnroll.text = (model.responseTime - model.requestedTime).toString()
             }
 
         }
