@@ -1,4 +1,4 @@
-package wee.digital.log
+package wee.digital.log.data
 
 import androidx.room.*
 

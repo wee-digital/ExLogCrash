@@ -1,10 +1,10 @@
 package wee.digital.example
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import wee.digital.log.CrashDialog
+import wee.digital.log.dialog.CrashDialog
+
 
 class MainActivity : AppCompatActivity() {
 
